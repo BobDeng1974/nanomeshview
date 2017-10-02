@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+# For a cmake out of source build in "build" subfolder
+build
