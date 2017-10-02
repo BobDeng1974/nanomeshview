@@ -14,8 +14,6 @@
 #include <igl/readOBJ.h>
 #include <igl/readPLY.h>
 #include <igl/viewer/Viewer.h>
-// workaround an issue with autoexplicit for readSTL and readWRL
-#undef IGL_STATIC_LIBRARY
 #include <igl/list_to_matrix.h>
 #include <igl/readSTL.h>
 #include <igl/readWRL.h>

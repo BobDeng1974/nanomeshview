@@ -33,3 +33,4 @@
 
 # For a cmake out of source build in "build" subfolder
 build
+install

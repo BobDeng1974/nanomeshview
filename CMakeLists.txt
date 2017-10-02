@@ -4,17 +4,13 @@ cmake_minimum_required(VERSION 2.8.12)
 project(nanomeshviewer)
 
 ### libIGL options: choose between header only and compiled static library
-option(LIBIGL_USE_STATIC_LIBRARY "Use LibIGL as static library" ON)
+option(LIBIGL_USE_STATIC_LIBRARY "Use LibIGL as static library" OFF)
 option(LIBIGL_WITH_VIEWER      "Use OpenGL viewer"  ON)
-option(LIBIGL_WITH_NANOGUI     "Use Nanogui menu"   OFF)
+option(LIBIGL_WITH_NANOGUI     "Use Nanogui menu"   ON)
 
 ### libIGL options: choose your dependencies (by default everything is OFF, in this example we need the viewer) ###
-option(LIBIGL_WITH_EMBREE           "Use Embree"         ON)
-option(LIBIGL_WITH_LIM              "Use LIM"            ON)
 option(LIBIGL_WITH_OPENGL           "Use OpenGL"         ON)
 option(LIBIGL_WITH_OPENGL_GLFW      "Use OpenGL GLFW"    ON)
-option(LIBIGL_WITH_PNG              "Use PNG"            ON)
-option(LIBIGL_WITH_XML              "Use XML"            ON)
 option(LIBIGL_WITH_DRACO            "Use Draco"          ON)
 ### End   to be tested ----
 
@@ -57,3 +53,13 @@ add_executable(${PROJECT_NAME}_bin main.cpp)
 target_include_directories(${PROJECT_NAME}_bin PRIVATE ${LIBIGL_INCLUDE_DIRS})
 target_compile_definitions(${PROJECT_NAME}_bin PRIVATE ${LIBIGL_DEFINITIONS})
 target_link_libraries(${PROJECT_NAME}_bin ${LIBIGL_LIBRARIES} ${LIBIGL_VIEWER_EXTRA_LIBRARIES} ${LIBIGL_OPENGL_EXTRA_LIBRARIES} ${LIBIGL_OPENGL_GLFW_EXTRA_LIBRARIES} ${LIBIGL_DRACO_EXTRA_LIBRARIES})
+
+install(TARGETS ${PROJECT_NAME}_bin RUNTIME DESTINATION bin)
+
+# build a CPack driven installer package
+include (InstallRequiredSystemLibraries)
+set (CPACK_RESOURCE_FILE_LICENSE  
+     "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+set (CPACK_PACKAGE_VERSION_MAJOR "0")
+set (CPACK_PACKAGE_VERSION_MINOR "1")
+include (CPack)

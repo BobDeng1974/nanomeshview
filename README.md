@@ -20,5 +20,9 @@ cd build
 cmake .. -G "Visual Studio 14 2015 Win64" -DLIBIGL_USE_STATIC_LIBRARY=ON -DLIBIGL_WITH_NANOGUI=ON -DLIBIGL_DIR=c:/dev/libigl
 ~~~~
 
+The last command must be run 4x times, for some yet unknown reason the CC preprocessor variables from Draco ex: ENABLE\_MESH\_COMPRESSION are not defined on the first run. 
+
+This is probably caused by using *add\_subdirectory* in libigl CMakeList.txt instead of using *find\_package*.
+
 Open solution and build nanomeshviewer_bin. 
 
